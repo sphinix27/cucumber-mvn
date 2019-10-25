@@ -15,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ApiSteps {
 
     private String endpoint;
+    private String body;
     private Response response;
     private Helper helper;
 
@@ -31,10 +32,17 @@ public class ApiSteps {
         }
     }
 
+    @Given("body is")
+    public void bodyIs(String body) {
+        this.body = body;
+    }
+
     @When("method {word}")
     public void method_GET(String method) {
         if ("GET".equals(method)) {
             this.response = Request.get(this.endpoint);
+        } else if ("PUT".equals(method)) {
+            this.response = Request.put(this.endpoint, this.body);
         } else {
             this.response = Request.delete(this.endpoint);
         }

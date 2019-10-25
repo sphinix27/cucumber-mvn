@@ -19,7 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BasePage {
 
     private WebDriver driver;
-    private WebDriverWait wait;
+    protected WebDriverWait wait;
     private Wait<WebDriver> fluentWait;
     private int timeout = 20;
     private int fluentTimeout = 20;

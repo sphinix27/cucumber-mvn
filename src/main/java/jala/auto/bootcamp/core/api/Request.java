@@ -24,7 +24,7 @@ public final class Request {
 
     }
 
-    public static Response  get(final String endpoint) {
+    public static Response get(final String endpoint) {
         return given()
                 .spec(requestSpecification)
                 .when()
@@ -45,5 +45,14 @@ public final class Request {
                 .spec(requestSpecification)
                 .when()
                 .delete(endpoint);
+    }
+
+    public static Response put(final String endpoint, final String body) {
+        return given()
+            .spec(requestSpecification)
+            .contentType(ContentType.JSON)
+            .when()
+            .body(body)
+            .put(endpoint);
     }
 }

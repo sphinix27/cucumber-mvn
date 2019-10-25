@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * TrelloLoginPage
@@ -15,6 +16,12 @@ public class TrelloLoginPage extends BasePage{
 
     @FindBy(id = "login")
     private WebElement loginButton;
+
+    @FindBy(css = ".show-when-password.hidden")
+    private WebElement passwordDivHidden;
+
+    @FindBy(className = "show-when-password")
+    private WebElement passwordDiv;
 
     public TrelloLoginPage(WebDriver driver) {
         super(driver);
@@ -36,5 +43,9 @@ public class TrelloLoginPage extends BasePage{
 
     public Boolean passwordIsVisible() {
         return isDisplayed(By.name("password"));
+    }
+
+    public Boolean passwordIsHidden() {
+        return wait.until(ExpectedConditions.invisibilityOf(passwordDivHidden));
     }
 }
